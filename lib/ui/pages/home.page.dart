@@ -22,7 +22,13 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[CityCard()],
+          // children: <Widget>[
+          //   // for(int card=0;card<4;card++)
+          //   //   const CityCard()
+          //
+          //
+          // ],
+          children: List.generate(4,(index)=>const CityCard() ),
         ),
       ),
       drawer: const Drawer(),

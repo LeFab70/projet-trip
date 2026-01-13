@@ -7,6 +7,11 @@ class CityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
+      clipBehavior: Clip.antiAlias, // évite le débordement
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side: const BorderSide(color: Colors.blue, width: 2),
+      ),
       child: SizedBox(
         height: 150,
         child: Stack(
@@ -14,44 +19,39 @@ class CityCard extends StatelessWidget {
           children: [
             Ink.image(
               fit: BoxFit.cover,
-              // height: double.infinity,
-              // width: double.infinity,
-              image: AssetImage('assets/images/campbellton.jpeg'),
-              child:
-              Container(color: Colors.black.withAlpha(120),
-              child: InkWell(
-                onTap: () {
-                  print("Campbellton");
-                },
-              ),),
-
+              image: const AssetImage('assets/images/campbellton.jpeg'),
+              child: Container(
+                color: Colors.black.withAlpha(120),
+                child: InkWell(
+                  splashColor: Colors.white24,
+                  highlightColor: Colors.white10,
+                  onTap: () {
+                    debugPrint("Campbellton");
+                  },
+                ),
+              ),
             ),
-            //Image.asset('assets/images/campbellton.jpeg', fit: BoxFit.cover,width: double.infinity,height: double.infinity,),
-            //Container(color: Colors.black.withAlpha(120)),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(Icons.star_border, color: Colors.white, size: 60),
-                      ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Icon(
+                      Icons.star_border,
+                      color: Colors.white,
+                      size: 40,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "Campbellton",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    "Campbellton",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 30,
+                    ),
                   ),
                 ],
               ),
