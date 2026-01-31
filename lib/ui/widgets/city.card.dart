@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CityCard extends StatelessWidget {
-  const CityCard({super.key});
+  final Map<String,dynamic> city;
+  final VoidCallback checkedCity;
+  const CityCard({super.key, required this.city, required this.checkedCity});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,15 @@ class CityCard extends StatelessWidget {
           children: [
             Ink.image(
               fit: BoxFit.cover,
-              image: const AssetImage('assets/images/campbellton.jpeg'),
+              image:  AssetImage(city['image']),
               child: Container(
                 color: Colors.black.withAlpha(120),
                 child: InkWell(
                   splashColor: Colors.white24,
                   highlightColor: Colors.white10,
                   onTap: () {
-                    debugPrint("Campbellton");
+                    debugPrint(city['name']);
+                    checkedCity();
                   },
                 ),
               ),
@@ -36,21 +39,22 @@ class CityCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Align(
                     alignment: Alignment.topRight,
                     child: Icon(
-                      Icons.star_border,
+                      city['checked']?
+                      Icons.star: Icons.star_border,
                       color: Colors.white,
                       size: 40,
                     ),
                   ),
                   Text(
-                    "Campbellton",
-                    style: TextStyle(
+                    city['name'],
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w900,
-                      fontSize: 30,
+                      fontSize: 20,
                     ),
                   ),
                 ],
