@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projet_city/ui/pages/home.page.dart';
+import 'package:projet_city/shared/themes/app.theme.dart';
+import 'ui/city/widgets/city.w.dart';
+
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,17 +11,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Projet trip",
-      home: HomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(size: 30, color: Colors.white),
-          elevation: 4,
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-      ),
+      home: CityW(),//HomePage(),
+      theme: AppTheme.lightTheme,
     );
   }
 }

@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> cities = Cities.cities;
+  int get _totalLike=> cities.where((city)=>city['checked']==true).length;
 
   void cityChecked(Map<String, dynamic> city) {
     int position = cities.indexOf(city);
@@ -29,7 +30,14 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.home),
           ),
         ),
-        title: const Text("Projet trip"),
+        title: Row(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(flex: 3,child: Text(' Projet trip '),),
+            Text(_totalLike.toString())
+          ],
+        ),
 
         actions: const <Widget>[Icon(Icons.more_vert)],
       ),
@@ -50,6 +58,7 @@ class _HomePageState extends State<HomePage> {
           children: cities
               .map(
                 (city) =>
+                    //CityCard(city: city, checkedCity:  cityChecked)
                     CityCard(city: city, checkedCity: () => cityChecked(city)),
               )
               .toList(),
